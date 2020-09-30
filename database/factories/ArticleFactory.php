@@ -22,7 +22,8 @@ class ModelFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $faker->text(50),
+            'body' => $faker->text(200)
         ];
     }
 }

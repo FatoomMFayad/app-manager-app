@@ -2,17 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\Model;
+use App\Models\Article;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
-class ModelFactory extends Factory
+class ArticleFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Model::class;
+    protected $model = Article::class;
 
     /**
      * Define the model's default state.
@@ -22,8 +23,8 @@ class ModelFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $faker->text(50),
-            'body' => $faker->text(200)
+            'title' => $this->faker->text(50),
+            'body'  => $this->faker->text(200)
         ];
     }
 }

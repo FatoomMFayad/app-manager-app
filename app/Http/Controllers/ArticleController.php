@@ -23,7 +23,7 @@ class ArticleController extends Controller
 
     }
 
-   
+
     /**
      * Store a newly created resource in storage.
      *
@@ -33,6 +33,15 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         //
+        $article = $request->isMethod('put') ? Article::findOrFail($request->article_id) : new Article;
+        $article->id = $request->input('article_id');
+        $article->title = $request->input('article_title');
+        $article->body = $request->input('article_body');
+
+        if($article->save()){
+            return new ArticleResource($article);
+        }
+
     }
 
     /**
@@ -43,9 +52,9 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        //Get a single article 
+        //Get a single article
         $article = Article::findOrFail($id);
-        
+
         //Return single article as a resource
         return new ArticleResource($article);
     }
